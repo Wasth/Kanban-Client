@@ -55,12 +55,16 @@ class Header extends React.Component {
 							</div>
 						</Menu.Item>
 						{this.state.menu ? (
-							<React.Fragment>
+							<span onClick={() => {
+								this.setState({
+									menu: !this.state.menu
+								});
+							}}>
 								{this.getMenu()}
 								<Menu.Item as={Link} to='/about/'>
 									About me
 								</Menu.Item>	
-							</React.Fragment>
+							</span>
 						) : ''}
 						
 					</Menu>
