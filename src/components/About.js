@@ -3,6 +3,12 @@ import {Container, Card, Label, Icon} from 'semantic-ui-react'
 export function About (props) {
 	let social = [
 		{
+			color: 'red',
+			icon: 'reddit',
+			text: 'Reddit',
+			url: 'https://www.reddit.com/user/tarsss/'
+		},
+		{
 			color: 'black',
 			icon: 'github',
 			text: 'Github',

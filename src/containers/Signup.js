@@ -40,17 +40,17 @@ class Signup extends React.Component {
 				<Container className="form">
 				<Card>
 					<Card.Content>
-						<h1>Регистрация</h1>
-							<Input disabled={userState.isFetching} placeholder='Имя пользователя' onChange={this.usernameHandler} value={this.state.username} />
+						<h1>Sign Up</h1>
+							<Input disabled={userState.isFetching} placeholder='Username' onChange={this.usernameHandler} value={this.state.username} />
 							{userState.error.username ? <p className='form-error'>{this.props.userState.error.username}</p> : ''}
 							
-							<Input disabled={userState.isFetching} type='password' placeholder='Пароль' onChange={this.passwordHandler} value={this.state.password} />
+							<Input disabled={userState.isFetching} type='password' placeholder='Password' onChange={this.passwordHandler} value={this.state.password} />
 							{userState.error.password ? <p className='form-error'>{userState.error.password}</p> : ''}
 
-							<Input disabled={userState.isFetching} type='password' placeholder='Повторите пароль' onChange={this.repeatPasswordHandler} value={this.state.repeatPassword} />
+							<Input disabled={userState.isFetching} type='password' placeholder='Repeat password' onChange={this.repeatPasswordHandler} value={this.state.repeatPassword} />
 							{userState.error['repeated-password'] ? <p className='form-error'>{userState.error['repeated-password']}</p> : ''}
 							
-							<Button loading={userState.isFetching} primary content='Создать аккаунт!' 
+							<Button loading={userState.isFetching} primary content='Create an account' 
 							onClick={() => this.props.signup(this.state.username, this.state.password, this.state.repeatPassword)}/>
 					</Card.Content>
 				</Card>

@@ -36,12 +36,12 @@ class Signin extends React.Component {
 				<Container className="form">
 				<Card>
 					<Card.Content>
-						<h1>Вход</h1>
-							<Input disabled={userState.isFetching} placeholder='Имя пользователя' onChange={this.usernameHandler} value={this.state.username} />
+						<h1>Sign in</h1>
+							<Input disabled={userState.isFetching} placeholder='Username' onChange={this.usernameHandler} value={this.state.username} />
 							{userState.error.username ? <p className='form-error'>{this.props.userState.error.username}</p> : ''}
-							<Input disabled={userState.isFetching} type='password' placeholder='Пароль' onChange={this.passwordHandler} value={this.state.password} />
+							<Input disabled={userState.isFetching} type='password' placeholder='Password' onChange={this.passwordHandler} value={this.state.password} />
 							{userState.error.password ? <p className='form-error'>{userState.error.password}</p> : ''}
-							<Button loading={userState.isFetching} primary content='Войти!' 
+							<Button loading={userState.isFetching} primary content='Sign in' 
 							onClick={() => this.props.signin(this.state.username, this.state.password)}/>
 					</Card.Content>
 				</Card>

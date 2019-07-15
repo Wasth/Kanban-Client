@@ -10,10 +10,10 @@ class Header extends React.Component {
 			return (
 				<React.Fragment>
 					<Menu.Item position='right' as={Link} to='/'>
-						Все доски
+						My boards
 					</Menu.Item>
 					<Menu.Item as={Button} onClick={() => this.props.logout()}>
-						Выйти
+						Log out
 					</Menu.Item>
 				</React.Fragment>
 			)
@@ -21,10 +21,10 @@ class Header extends React.Component {
 		return (
 				<React.Fragment>
 					<Menu.Item position='right' as={Link} to='/signin/'>
-						Войти
+						Sign in
 					</Menu.Item>
 					<Menu.Item  as={Link} to='/signup/'>
-						Регистрация
+						Sign Up
 					</Menu.Item>
 				</React.Fragment>
 			)
@@ -42,7 +42,7 @@ class Header extends React.Component {
 
 						{this.getMenu()}
 						<Menu.Item as={Link} to='/about/'>
-							Обо мне
+							About me
 						</Menu.Item>	
 					</Menu>
 				</Container>
