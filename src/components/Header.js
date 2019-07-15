@@ -1,10 +1,16 @@
 import React from 'react';
-import { Button, Menu, Container } from 'semantic-ui-react';
+import { Button, Menu, Container, Icon } from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {logout} from '../actions/userActions'
 
 class Header extends React.Component {
+	constructor(props){
+		super(props)
+		this.state = {
+			menu: false,
+		}
+	}
 	getMenu(){
 		if(this.props.userState.user) {
 			return (
@@ -34,16 +40,29 @@ class Header extends React.Component {
 			<div>
 
 				<Container>
-					<Menu className='main-menu' color={'green'} inverted stackable>
-						<Menu.Item className='logo-item' as={Link} to={'/'}>
-							<img width={'50'} src="/vectorpaint.svg" />
+					<Menu borderless className='main-menu' color={'green'} inverted stackable>
+						<Menu.Item className='logo-item'>
+							<Link to='/'>
+							<img width='35' src="/vectorpaint.svg" />
 							KanbanX
+							</Link>
+							<div className='menu-toggler' onClick={() => {
+								this.setState({
+									menu: !this.state.menu
+								});
+							}}>
+								<Icon name={'angle double '+(this.state.menu ? 'up' : 'down')} />
+							</div>
 						</Menu.Item>
-
-						{this.getMenu()}
-						<Menu.Item as={Link} to='/about/'>
-							About me
-						</Menu.Item>	
+						{this.state.menu ? (
+							<React.Fragment>
+								{this.getMenu()}
+								<Menu.Item as={Link} to='/about/'>
+									About me
+								</Menu.Item>	
+							</React.Fragment>
+						) : ''}
+						
 					</Menu>
 				</Container>
 			</div>

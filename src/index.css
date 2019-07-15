@@ -33,3 +33,16 @@
 	margin-right: 15px;
 	margin-bottom: 15px;
 }
+.menu-toggler {
+	display: none;
+}
+@media (max-width: 767px) {
+	.form.ui .card {
+		width: 100%;
+	}
+	.menu-toggler {
+		display: block;
+		position: relative;
+		left: calc(100% - 120px);
+	}
+}
