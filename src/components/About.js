@@ -62,7 +62,7 @@ export function About (props) {
 					I make this project for learning React stack and I'm excited about all this c:
 				</p>
 				<p>
-					this projects have a lot "bad-code", bugs, issues but I'm an only learner {'>_<'}
+					Propably, this projects have a lot "bad-code", bugs, issues but I'm an only learner {'>_<'}
 				</p>
 				<p>
 					However, I hope, you like this Kanban-pet-project ^_^
