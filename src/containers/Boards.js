@@ -54,9 +54,12 @@ class Boards extends React.Component {
 	}
 	toggleForm(){
 		this.setState({
+			name: '',
+			color: '#000',
+		});
+		this.setState({
 			isForm: !this.state.isForm
 		});
-		
 	}
 	sendForm(){
 		this.props.addBoard(this.state.name, this.state.color, this.props.token, () => this.toggleForm());
