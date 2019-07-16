@@ -1,3 +1,6 @@
+body {
+	background-color: #f9f9f9;
+}
 .ui.main-menu.menu {
 	margin-top: 15px;
 	margin-bottom: 15px;
@@ -22,6 +25,12 @@
 .ui.menu .item.logo-item img{
 	margin-right: 15px;
 }
+.logo-item a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 .form.ui .card p.form-error {
 	margin-top: -15px;
 	margin-bottom: 10px;
@@ -35,6 +44,60 @@
 }
 .menu-toggler {
 	display: none;
+}
+.boards-wrapper {
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	grid-gap: 15px;
+}
+div.boards-wrapper .ui.card {
+	width: 100%;
+	height: 100px;
+	margin: 0;	
+}
+.board .line {
+	height: 10px;
+	width: 100%;
+	border-radius: 5px;
+	margin-top: 15px;
+	border: 1px solid lightgray;
+}
+.board {
+	display: flex;
+	-ms-align-items: center;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+	font-size: 16px !important;
+	text-align: center;
+}
+.ui.button.add-board {
+	text-align: center;
+	margin-right: 0;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: center;
+}
+#root .ui.button.add-board i {
+	margin: 0;
+}
+.ui.header {
+	margin-top: 5px;
+}
+.ui.grid.add-board-grid {
+	max-width: 600px;
+	margin: 0 auto;
+}
+@media (max-width: 991px) {
+	.boards-wrapper {
+		grid-template-columns: repeat(5, 1fr);
+	}
 }
 @media (max-width: 767px) {
 	.form.ui .card {
@@ -51,4 +114,21 @@
 	.container .menu.main-menu.hide .item {
 		display: none;
 	}
+	.boards-wrapper {
+		grid-template-columns: repeat(4, 1fr);
+	}
+	.board-dimmer .ui.loader {
+		/*top: 45px;*/
+
+	}
+}
+@media (max-width: 600px) {
+	.boards-wrapper {
+		grid-template-columns: repeat(3, 1fr);
+	}	
+}
+@media (max-width: 425px) {
+	.boards-wrapper {
+		grid-template-columns: repeat(2, 1fr);
+	}	
 }

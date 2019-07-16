@@ -41,7 +41,6 @@ class Header extends React.Component {
 
 				<Container>
 					<Menu onClick={() => {
-						console.log('need to hide');
 						this.setState({
 							menu: !this.state.menu
 						});

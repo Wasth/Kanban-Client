@@ -46,7 +46,7 @@ export function About (props) {
 		},
 	]
 	return <Container>
-		<Card style={{width: '100%'}}>
+		<Card style={{width: '100%', marginBottom: '15px'}}>
 			<Card.Content>
 				<h1>
 					Welcome everyone!

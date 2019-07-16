@@ -1,12 +1,5 @@
-import { baseUrl } from '../utils/apihost'
+import { baseUrl, newForm } from '../utils/apihost'
 
-export function newForm(data){
-	let formData = new FormData();
-	for(let key in data) {
-		formData.append(key, data[key])
-	}
-	return formData;
-}
 
 export function signin(username, password){
 	return function(dispatch) {
@@ -28,7 +21,6 @@ export function signin(username, password){
 		})
 		.then(data => {
 			if(data.result == 1) {
-				console.log(data)
 				dispatch({
 					type: 'SIGNIN_SUCCESS',
 					payload: {

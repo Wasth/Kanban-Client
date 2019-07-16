@@ -1,6 +1,10 @@
 const initialState = {
 	isFetching: false,
 	error: false,
+	// user: {
+		// token: 'f61388b5-269b-4c42-97ef-b0b52d9333a7',
+		// username: 'user'
+	// },
 	user: false,
 	moveToSignup: false,
 }
