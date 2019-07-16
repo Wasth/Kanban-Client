@@ -45,4 +45,10 @@
 		position: relative;
 		left: calc(100% - 120px);
 	}
+	.container .menu.main-menu.hide .item:first-child{
+		display: flex;
+	}
+	.container .menu.main-menu.hide .item {
+		display: none;
+	}
 }

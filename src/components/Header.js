@@ -40,7 +40,12 @@ class Header extends React.Component {
 			<div>
 
 				<Container>
-					<Menu borderless className='main-menu' color={'green'} inverted stackable>
+					<Menu onClick={() => {
+						console.log('need to hide');
+						this.setState({
+							menu: !this.state.menu
+						});
+					}} borderless className={'main-menu '+(this.state.menu ? 'not' : 'hide')} color={'green'} inverted stackable>
 						<Menu.Item className='logo-item'>
 							<Link to='/'>
 							<img width='35' src="/vectorpaint.svg" />
@@ -54,18 +59,10 @@ class Header extends React.Component {
 								<Icon name={'angle double '+(this.state.menu ? 'up' : 'down')} />
 							</div>
 						</Menu.Item>
-						{this.state.menu ? (
-							<span onClick={() => {
-								this.setState({
-									menu: !this.state.menu
-								});
-							}}>
-								{this.getMenu()}
-								<Menu.Item as={Link} to='/about/'>
-									About me
-								</Menu.Item>	
-							</span>
-						) : ''}
+						{this.getMenu()}
+						<Menu.Item as={Link} to='/about/'>
+							About me
+						</Menu.Item>	
 						
 					</Menu>
 				</Container>
