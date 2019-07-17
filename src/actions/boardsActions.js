@@ -12,18 +12,9 @@ export function getBoards(token){
 				},
 		})
 		.then(response => {
-			return response.json()
-			if(response.statusCode == 200) {
-				
-			}else {
-				dispatch({
-					type: 'BOARD_FAILED',
-					payload: 'Error'
-				})
-			}
+			return response.json();
 		})
 		.then(data => {
-			console.log(data)
 			if(data) {
 				dispatch({
 					type: 'GET_BOARDS_SUCCESS',

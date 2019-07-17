@@ -71,15 +71,11 @@ class Signup extends React.Component {
 }
 
 
-const mapStateToProps = state => {
-	return {
-		userState: state.user
-	}
-}
-const mapDispatchToProps = dispatch => {
-	return {
-		signup: (username, password, repeatPassword) => dispatch(signup(username, password, repeatPassword))
-	}
-}
+const mapStateToProps = state => ({
+	userState: state.user
+})
+const mapDispatchToProps = dispatch => ({
+	signup: (username, password, repeatPassword) => dispatch(signup(username, password, repeatPassword))
+})
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Signup))

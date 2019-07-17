@@ -60,15 +60,11 @@ class Signin extends React.Component {
 	}
 }
 
-const mapStateToProps = state => {
-	return {
-		userState: state.user
-	}
-}
-const mapDispatchToProps = dispatch => {
-	return {
-		signin: (username, password) => dispatch(signin(username, password))
-	}
-}
+const mapStateToProps = state => ({
+	userState: state.user
+})
+const mapDispatchToProps = dispatch => ({
+	signin: (username, password) => dispatch(signin(username, password))
+})
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Signin))

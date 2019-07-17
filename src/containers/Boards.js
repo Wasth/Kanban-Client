@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux'
 import {Container, Card, Segment, Dimmer, Loader, Icon, Button, Header, Input, Dropdown, Grid, Label, Confirm} from 'semantic-ui-react'
 import { getBoards, addBoard, updateBoard, deleteBoard } from '../actions/boardsActions'
-
+import { Link } from 'react-router-dom';
 class Boards extends React.Component {
 	componentDidMount(){
 		console.log('Load boards...');
@@ -168,7 +168,7 @@ class Boards extends React.Component {
 			        	<Loader>Loading</Loader>
 			      	</Dimmer>
 			      	<Confirm 
-			      	open={this.state.showConfirm} 
+			      		open={this.state.showConfirm} 
 				      	header='Deleting board' 
 				      	content='Are you seriously gonna delete this? You will not be able to reset it.' 
 				      	onCancel={() => this.toggleConfirm()} 
@@ -185,8 +185,7 @@ class Boards extends React.Component {
 			      		{
 							this.props.boardState.boards.map((el, i) => {
 								return <Card key={el.id}>
-									<Card.Content className='board'>
-										
+										<Card.Content className='board'>
 								        	<Label attached='top'>
 								        		<Icon onClick={() => this.toggleForm({
 								        			name: el.name,
@@ -195,11 +194,12 @@ class Boards extends React.Component {
 								        		})} name='pencil alternate' />
 								        		<Icon onClick={() => this.deleteHandler(el.id)} name='delete' />
 								        	</Label>
-								        	{el.name}
-										<div className="line" style={{backgroundColor: el.color}}></div>
-								       
-									</Card.Content>
-								</Card>
+								        	<Link to={'/board/'+el.id+'/lists'}> 
+								        		{el.name}
+												<div className="line" style={{backgroundColor: el.color}}></div>							       
+											</Link>
+										</Card.Content>
+									</Card>
 							})
 						}
 			      	</div>
@@ -210,19 +210,15 @@ class Boards extends React.Component {
 	}
 }
 
-const mapStateToProps = store => {
-	return {
-		boardState: store.boards,
-		token: store.user.user.token
-	}
-}
-const mapDispatchToProps = dispatch => {
-	return {
-		loadBoards: (token) => dispatch(getBoards(token)),
-		addBoard: (name, color, token, toggleForm) => dispatch(addBoard(name, color, token, toggleForm)),
-		updateBoard: (id, name, color, token, toggleForm) => dispatch(updateBoard(id, name, color, token, toggleForm)),
-		deleteBoard: (id, token) => dispatch(deleteBoard(id, token))
-	}
-}
+const mapStateToProps = store => ({
+	boardState: store.boards,
+	token: store.user.user.token
+})
+const mapDispatchToProps = dispatch => ({
+	loadBoards: (token) => dispatch(getBoards(token)),
+	addBoard: (name, color, token, toggleForm) => dispatch(addBoard(name, color, token, toggleForm)),
+	updateBoard: (id, name, color, token, toggleForm) => dispatch(updateBoard(id, name, color, token, toggleForm)),
+	deleteBoard: (id, token) => dispatch(deleteBoard(id, token))
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Boards);

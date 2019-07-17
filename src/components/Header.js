@@ -69,14 +69,11 @@ class Header extends React.Component {
 		)
 	}
 }
-const mapStateToProps = state => {
-	return {
-		userState: state.user
-	}
-}
-const mapDispatchToProps = dispatch => {
-	return {
-		logout: () => dispatch(logout())
-	}
-}
+const mapStateToProps = state => ({
+	userState: state.user
+})
+const mapDispatchToProps = dispatch => ({
+	logout: () => dispatch(logout())
+})
+
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

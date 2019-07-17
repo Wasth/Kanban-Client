@@ -27,7 +27,7 @@ const initialState = {
 export function boardsReducer(state = initialState, action){
 	if(action.type == 'GET_BOARDS_REQUEST'){
 		return {...state,
-			boards: [],
+			// boards: [],
 			isFetching: true,
 			error: false,
 		}

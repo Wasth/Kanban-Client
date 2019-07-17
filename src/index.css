@@ -55,6 +55,9 @@ div.boards-wrapper .ui.card {
 	height: 160px;
 	margin: 0;	
 }
+.boards-wrapper a {
+	color: #000;
+}
 .board .line {
 	height: 10px;
 	width: 100%;
@@ -110,6 +113,32 @@ div.boards-wrapper .ui.card .board {
 }
 .board-dimmer + h3{
 	text-align: center;
+}
+/* lists styles */
+.lists-wrapper {
+	width: 100%;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	height: calc(100vh - 190px);
+	/*display: flex;*/
+	flex-wrap: nowrap;
+	padding: 1px;
+	padding-bottom: 15px;
+	white-space: nowrap;
+}
+.lists-wrapper > div {
+
+}
+.lists-wrapper .list {
+	height: 100%;
+	margin-bottom: 15px;
+	/*flex-basis: 250px;*/
+	width: 250px;
+	margin-top: 0;
+	margin-right: 15px;
+	/*flex-grow: 0;*/
+	/*flex-shrink: 0;*/
+	display: inline-block;
 }
 @media (max-width: 991px) {
 	.boards-wrapper {
