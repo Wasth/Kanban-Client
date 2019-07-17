@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {Container, Card, Input, Button} from 'semantic-ui-react'
+import {Container, Card, Input, Button, Label} from 'semantic-ui-react'
 
 import { withRouter, Redirect } from 'react-router-dom'
 
@@ -41,14 +41,23 @@ class Signup extends React.Component {
 				<Card>
 					<Card.Content>
 						<h1>Sign Up</h1>
-							<Input disabled={userState.isFetching} placeholder='Username' onChange={this.usernameHandler} value={this.state.username} />
-							{userState.error.username ? <p className='form-error'>{this.props.userState.error.username}</p> : ''}
+							<Input icon='user' iconPosition='left' disabled={userState.isFetching} placeholder='Username' onChange={this.usernameHandler} value={this.state.username} />
+							{userState.error.username ? 
+								<Label basic color='red' pointing>
+							        {userState.error.username}
+							    </Label> : ''}
 							
-							<Input disabled={userState.isFetching} type='password' placeholder='Password' onChange={this.passwordHandler} value={this.state.password} />
-							{userState.error.password ? <p className='form-error'>{userState.error.password}</p> : ''}
+							<Input icon='key' iconPosition='left' disabled={userState.isFetching} type='password' placeholder='Password' onChange={this.passwordHandler} value={this.state.password} />
+							{userState.error.password ? 
+								<Label basic color='red' pointing>
+							        {userState.error.password}
+							    </Label> : ''}
 
-							<Input disabled={userState.isFetching} type='password' placeholder='Repeat password' onChange={this.repeatPasswordHandler} value={this.state.repeatPassword} />
-							{userState.error['repeated-password'] ? <p className='form-error'>{userState.error['repeated-password']}</p> : ''}
+							<Input icon='key' iconPosition='left' disabled={userState.isFetching} type='password' placeholder='Repeat password' onChange={this.repeatPasswordHandler} value={this.state.repeatPassword} />
+							{userState.error['repeated-password'] ? 
+							<Label basic color='red' pointing>
+							        {userState.error['repeated-password']}
+						    </Label> : ''}
 							
 							<Button loading={userState.isFetching} primary content='Create an account' 
 							onClick={() => this.props.signup(this.state.username, this.state.password, this.state.repeatPassword)}/>

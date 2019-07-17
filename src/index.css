@@ -94,6 +94,10 @@ div.boards-wrapper .ui.card {
 	max-width: 600px;
 	margin: 0 auto;
 }
+.form .ui.label {
+	margin-top: -15px;
+	margin-bottom: 15px;
+}
 @media (max-width: 991px) {
 	.boards-wrapper {
 		grid-template-columns: repeat(5, 1fr);
