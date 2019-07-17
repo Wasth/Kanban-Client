@@ -1,8 +1,8 @@
 body {
 	background-color: #f9f9f9;
+	padding-top: 15px;
 }
 .ui.main-menu.menu {
-	margin-top: 15px;
 	margin-bottom: 15px;
 }
 .menu .item {
