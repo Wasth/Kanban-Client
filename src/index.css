@@ -52,7 +52,7 @@ body {
 }
 div.boards-wrapper .ui.card {
 	width: 100%;
-	height: 100px;
+	height: 160px;
 	margin: 0;	
 }
 .board .line {
@@ -62,7 +62,8 @@ div.boards-wrapper .ui.card {
 	margin-top: 15px;
 	border: 1px solid lightgray;
 }
-.board {
+div.boards-wrapper .ui.card .board {
+	/*padding-top: 32px;*/
 	display: flex;
 	-ms-align-items: center;
 	flex-direction: column;
@@ -71,6 +72,14 @@ div.boards-wrapper .ui.card {
 	font-weight: bold;
 	font-size: 16px !important;
 	text-align: center;
+}
+.board .label {
+	display: flex;
+    justify-content: flex-end;
+    background-color: transparent;
+}
+.board .label .icon {
+	cursor: pointer;
 }
 .ui.button.add-board {
 	text-align: center;
@@ -97,6 +106,10 @@ div.boards-wrapper .ui.card {
 .form .ui.label {
 	margin-top: -15px;
 	margin-bottom: 15px;
+
+}
+.board-dimmer + h3{
+	text-align: center;
 }
 @media (max-width: 991px) {
 	.boards-wrapper {

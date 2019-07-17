@@ -67,3 +67,38 @@ export function addBoard(name, color, token, toggleForm){
 		
 	}
 }
+
+export function updateBoard(id, name, color, token, toggleForm){
+	return function(dispatch){
+		dispatch({
+			type: 'BOARD_REQUEST'
+		})
+
+		fetch(baseUrl+'board/'+id, {
+			method: 'PUT',
+			headers: {
+				'token': token
+			},
+			body: newForm({
+				name: name,
+				color: color,
+			})
+		})
+		.then(response => {
+			return response.json()
+		})
+		.then(data => {
+			if(data.result == 1) {
+				dispatch(getBoards(token));
+				toggleForm();
+			}else {
+				dispatch({
+					'type': 'BOARD_FAILED',
+					payload: data.error
+				})
+			}
+		})
+
+		
+	}
+}
