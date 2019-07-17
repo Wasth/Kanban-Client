@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import {Container, Card, Segment, Dimmer, Loader, Icon, Button, Header, Input, Dropdown, Grid, Label, Confirm} from 'semantic-ui-react'
-import { getBoards, addBoard, updateBoard } from '../actions/boardsActions'
+import { getBoards, addBoard, updateBoard, deleteBoard } from '../actions/boardsActions'
 
 class Boards extends React.Component {
 	componentDidMount(){
@@ -99,6 +99,12 @@ class Boards extends React.Component {
 			showConfirm: !this.state.showConfirm
 		});
 	}
+	deleteHandler(id) {
+		this.setState({
+			id: id
+		})
+		this.toggleConfirm()
+	}
 	render() {
 		const boardState = this.props.boardState;
 		if(this.state.isForm) {
@@ -108,7 +114,12 @@ class Boards extends React.Component {
 					<Dimmer className='board-dimmer' active={boardState.isFetching}>
 			        	<Loader>Loading</Loader>
 			      	</Dimmer>
-			      	<Confirm open={this.state.showConfirm} content={this.state.formAction == 'create' ? 'Are you really want to create a new board?' : 'Are you really want to change this board?'} onCancel={() => this.toggleConfirm()} onConfirm={() => this.sendForm()} />
+			      	<Confirm 
+			      		open={this.state.showConfirm} 
+			      		header={this.state.formAction == 'create' ? 'Create the board' : 'Update the board'} 
+			      		content={this.state.formAction == 'create' ? 'Are you really want to create a new board?' : 'Are you really want to change this board?'} 
+			      		onCancel={() => this.toggleConfirm()} 
+			      		onConfirm={() => this.sendForm()} />
 			      	<h3>{ this.state.formAction === 'create' ? 'Create a new board' : 'Let\'s edit board'  }</h3>
 					<Grid className='add-board-grid'>
 						
@@ -156,6 +167,15 @@ class Boards extends React.Component {
 			      	<Dimmer className='board-dimmer' active={boardState.isFetching}>
 			        	<Loader>Loading</Loader>
 			      	</Dimmer>
+			      	<Confirm 
+			      	open={this.state.showConfirm} 
+				      	header='Deleting board' 
+				      	content='Are you seriously gonna delete this? You will not be able to reset it.' 
+				      	onCancel={() => this.toggleConfirm()} 
+				      	onConfirm={() => {
+				      		this.props.deleteBoard(this.state.id, this.props.token);
+				      		this.toggleConfirm();
+				      	}} />
 			      	<Header as="h2" textAlign="center">My Boards</Header>
 			      	{boardState.error}	
 			      	<div className="boards-wrapper">
@@ -173,7 +193,7 @@ class Boards extends React.Component {
 								        			color: el.color,
 								        			id: el.id,
 								        		})} name='pencil alternate' />
-								        		<Icon name='delete' />
+								        		<Icon onClick={() => this.deleteHandler(el.id)} name='delete' />
 								        	</Label>
 								        	{el.name}
 										<div className="line" style={{backgroundColor: el.color}}></div>
@@ -201,6 +221,7 @@ const mapDispatchToProps = dispatch => {
 		loadBoards: (token) => dispatch(getBoards(token)),
 		addBoard: (name, color, token, toggleForm) => dispatch(addBoard(name, color, token, toggleForm)),
 		updateBoard: (id, name, color, token, toggleForm) => dispatch(updateBoard(id, name, color, token, toggleForm)),
+		deleteBoard: (id, token) => dispatch(deleteBoard(id, token))
 	}
 }
 

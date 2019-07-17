@@ -102,3 +102,30 @@ export function updateBoard(id, name, color, token, toggleForm){
 		
 	}
 }
+
+export function deleteBoard(id, token){
+	return function(dispatch){
+		dispatch({
+			type: 'BOARD_REQUEST'
+		})
+		fetch(baseUrl+'board/'+id, {
+			method: 'DELETE',
+			headers: {
+				'token': token
+			},
+		})
+		.then(response => {
+			return response.json()
+		})
+		.then(data => {
+			if(data.result == 1) {
+				dispatch(getBoards(token));
+			}else {
+				dispatch({
+					'type': 'BOARD_FAILED',
+					payload: data.error
+				})
+			}
+		})
+	}
+}

@@ -12,8 +12,8 @@ class Signin extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			username: '',
-			password: '',
+			username: 'user',
+			password: 'password',
 		}
 	}
 	usernameHandler = (e) => {
