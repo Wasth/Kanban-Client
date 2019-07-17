@@ -16,10 +16,10 @@ class Header extends React.Component {
 			return (
 				<React.Fragment>
 					<Menu.Item position='right' as={Link} to='/'>
-						My boards
+						<Icon name='clipboard list' /> My boards
 					</Menu.Item>
 					<Menu.Item as={Button} onClick={() => this.props.logout()}>
-						Log out
+						<Icon name='log out' /> Log out
 					</Menu.Item>
 				</React.Fragment>
 			)
@@ -27,10 +27,10 @@ class Header extends React.Component {
 		return (
 				<React.Fragment>
 					<Menu.Item position='right' as={Link} to='/signin/'>
-						Sign in
+						<Icon name='user' /> Sign in
 					</Menu.Item>
 					<Menu.Item  as={Link} to='/signup/'>
-						Sign Up
+						<Icon name='user plus' /> Sign Up
 					</Menu.Item>
 				</React.Fragment>
 			)
@@ -60,7 +60,7 @@ class Header extends React.Component {
 						</Menu.Item>
 						{this.getMenu()}
 						<Menu.Item as={Link} to='/about/'>
-							About me
+							<Icon name='info' /> About me
 						</Menu.Item>	
 						
 					</Menu>
