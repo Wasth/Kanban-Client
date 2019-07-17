@@ -67,6 +67,7 @@ class Boards extends React.Component {
 			this.setState({
 				name: '',
 				color: '#000',
+				formAction: 'create',
 			});
 		}
 		
