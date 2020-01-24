@@ -6,6 +6,7 @@ import { loadLists } from '../actions/listsActions';
 
 import { Container, Segment, Dimmer, Loader, Card  } from 'semantic-ui-react';
 
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 class Lists extends React.Component {
 	componentDidMount(){
@@ -16,6 +17,7 @@ class Lists extends React.Component {
 	}
 	render() {
 		const listsState = this.props.listsState;
+		console.log(listsState);
 		return (
 			<Container>
 				<Segment>
@@ -25,88 +27,35 @@ class Lists extends React.Component {
 			      	<h2>
 		        		Your lists
 		        	</h2>
-		        	<div className="lists-wrapper">	
+		        	<DragDropContext onDragEnd={(r) => {console.log(r)}}>
+	        			<Droppable direction="horizontal" droppableId='listsdropp'>
+		        			{(provided, snapshot) => (
+        					<div {...provided.droppableProps} ref={provided.innerRef} className="lists-wrapper">	
+			        			{listsState.lists.map((el, i) => (
+			        				<Draggable key={el.id} draggableId={'listgragg'+el.id} index={i} >
+			        					{(provided, snapshot) => (
+			        						<div className='list' {...provided.draggableProps}
+                      							{...provided.dragHandleProps} ref={provided.innerRef}>
 
-	        			{/*<div>*/}
-	        				<Card className='list'>
-			        		<Card.Content>
-			        			<h3>List name</h3>
-			        			<hr />
-			        			task <br />
-			        			task <br />
-			        			task <br />
-			        			task <br />
-			        		</Card.Content>
-			        	</Card>
-
-			        	<Card className='list'>
-			        		<Card.Content>
-			        			<h3>List name</h3>
-			        			<hr />
-			        			task <br />
-			        			task <br />
-			        			task <br />
-			        			task <br />
-			        		</Card.Content>
-			        	</Card>
-
-			        	<Card className='list'>
-			        		<Card.Content>
-			        			<h3>List name</h3>
-			        			<hr />
-			        			task <br />
-			        			task <br />
-			        			task <br />
-			        			task <br />
-			        		</Card.Content>
-			        	</Card>
-
-			        	<Card className='list'>
-			        		<Card.Content>
-			        			<h3>List name</h3>
-			        			<hr />
-			        			task <br />
-			        			task <br />
-			        			task <br />
-			        			task <br />
-			        		</Card.Content>
-			        	</Card>
-
-			        	<Card className='list'>
-			        		<Card.Content>
-			        			<h3>List name</h3>
-			        			<hr />
-			        			task <br />
-			        			task <br />
-			        			task <br />
-			        			task <br />
-			        		</Card.Content>
-			        	</Card>
-
-			        	<Card className='list'>
-			        		<Card.Content>
-			        			<h3>List name</h3>
-			        			<hr />
-			        			task <br />
-			        			task <br />
-			        			task <br />
-			        			task <br />
-			        		</Card.Content>
-			        	</Card>
-
-			        	<Card className='list'>
-			        		<Card.Content>
-			        			<h3>List name</h3>
-			        			<hr />
-			        			task <br />
-			        			task <br />
-			        			task <br />
-			        			task <br />
-			        		</Card.Content>
-			        	</Card>
-	        			</div>
-
-		        	{/*</div>*/}
+			        						<Card>
+								        		<Card.Content>
+								        			<h3>{el.name}</h3>
+								        			<hr />
+								        			task 11<br />
+								        			task 12<br />
+								        			task 13<br />
+								        			task 14<br />
+								        		</Card.Content>
+								        	</Card>
+								        	</div>
+		        						)}
+						        	</Draggable>
+		        				))}
+		        				{provided.placeholder}
+        					</div>
+        					)}
+        				</Droppable>
+    				</DragDropContext>
 				</Segment>
 			</Container>	
 		)

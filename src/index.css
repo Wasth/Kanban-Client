@@ -120,14 +120,14 @@ div.boards-wrapper .ui.card .board {
 	overflow-x: scroll;
 	overflow-y: hidden;
 	height: calc(100vh - 190px);
-	/*display: flex;*/
+	display: flex;
 	flex-wrap: nowrap;
 	padding: 1px;
 	padding-bottom: 15px;
 	white-space: nowrap;
 }
-.lists-wrapper > div {
-
+.lists-wrapper .card {
+	height: 100%;
 }
 .lists-wrapper .list {
 	height: 100%;
