@@ -131,7 +131,6 @@ div.boards-wrapper .ui.card .board {
 }
 .lists-wrapper .list {
 	height: 100%;
-	margin-bottom: 15px;
 	/*flex-basis: 250px;*/
 	width: 250px;
 	margin-top: 0;

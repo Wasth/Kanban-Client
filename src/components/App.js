@@ -17,7 +17,9 @@ class App extends React.Component {
 		return (
 			<div>
 				<BrowserRouter>
+
 					<Header />
+
 					<Route path='/signin/' component={Signin} />
 					<Route path='/signup/' component={Signup} />
 					<Route path='/about/' component={About} />	
@@ -26,8 +28,6 @@ class App extends React.Component {
 					<PrivateRoute isLogin={this.props.isLogin} path='/boards' component={Boards} />
 					<PrivateRoute isLogin={this.props.isLogin} path='/board/:id/lists' component={Lists} />
 
-
-					
 				</BrowserRouter>
 			</div>
 		)

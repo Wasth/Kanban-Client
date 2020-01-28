@@ -2,11 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { loadLists } from '../actions/listsActions';
+import { loadLists, reorderList } from '../actions/listsActions';
+import ListsView from '../components/Lists';
 
 import { Container, Segment, Dimmer, Loader, Card  } from 'semantic-ui-react';
-
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 class Lists extends React.Component {
 	componentDidMount(){
@@ -17,7 +16,6 @@ class Lists extends React.Component {
 	}
 	render() {
 		const listsState = this.props.listsState;
-		console.log(listsState);
 		return (
 			<Container>
 				<Segment>
@@ -27,35 +25,10 @@ class Lists extends React.Component {
 			      	<h2>
 		        		Your lists
 		        	</h2>
-		        	<DragDropContext onDragEnd={(r) => {console.log(r)}}>
-	        			<Droppable direction="horizontal" droppableId='listsdropp'>
-		        			{(provided, snapshot) => (
-        					<div {...provided.droppableProps} ref={provided.innerRef} className="lists-wrapper">	
-			        			{listsState.lists.map((el, i) => (
-			        				<Draggable key={el.id} draggableId={'listgragg'+el.id} index={i} >
-			        					{(provided, snapshot) => (
-			        						<div className='list' {...provided.draggableProps}
-                      							{...provided.dragHandleProps} ref={provided.innerRef}>
+		        	<ListsView reorderList={(lId, to, from) => {
 
-			        						<Card>
-								        		<Card.Content>
-								        			<h3>{el.name}</h3>
-								        			<hr />
-								        			task 11<br />
-								        			task 12<br />
-								        			task 13<br />
-								        			task 14<br />
-								        		</Card.Content>
-								        	</Card>
-								        	</div>
-		        						)}
-						        	</Draggable>
-		        				))}
-		        				{provided.placeholder}
-        					</div>
-        					)}
-        				</Droppable>
-    				</DragDropContext>
+		        		this.props.reorderList(lId, to, this.props.token);
+		        	}} lists={listsState} />
 				</Segment>
 			</Container>	
 		)
@@ -67,7 +40,18 @@ const mapStateToProps = store => ({
 	token: store.user.user.token
 })
 const mapDispatchToProps = dispatch => ({
-	loadLists: (boardId, token) => dispatch(loadLists(boardId, token))
+	loadLists: (boardId, token) => dispatch(loadLists(boardId, token)),
+	reorderList: (listId, to, token) => {
+		dispatch({
+			type: 'LIST_REORDER_REQUEST',
+			payload: {
+				listId: listId,
+				destination: to,
+			}
+		});
+		dispatch(reorderList(listId, to, token));
+	},
+
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Lists));
