@@ -41,16 +41,25 @@ export function listsReducer(state = initalState, action){
 	}
 
 	if(action.type == 'REORDER_LISTS') {
-		console.log('reload')
-		console.log(state.lists.map(l => {
-				l.sort = action.payload[l.id]
-				return l
-			}))
 		return {
 			...state,
 			lists: state.lists.map(l => {
 				l.sort = action.payload[l.id]
 				return l
+			})
+		}
+	}
+
+	if(action.type == 'GET_TASK_SUCCESS') {
+		
+
+		return {
+			...state,
+			lists: state.lists.map(l => {
+				if(l.id == action.payload.listId) {
+					l.tasks = action.payload.tasks;
+				}
+				return l;
 			})
 		}
 	}

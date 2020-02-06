@@ -4,38 +4,37 @@ import { Card } from 'semantic-ui-react';
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-export default function Lists({lists, addList, addTask, deleteList, deleteTask, reorderList, reorderTask}) {
+import List from './List';
+
+export default function Lists({lists, addList, editList, deleteList, reorderList}) {
 	return <DragDropContext onDragEnd={(r) => {
 		console.log(r);
-		reorderList(r.draggableId.replace('listdragg', ''), r.destination.index);
-		console.log('done');
+		if(r.draggableId.indexOf('listdragg') >= 0) {
+			reorderList(r.draggableId.replace('listdragg', ''), r.destination.index);
+		}
 	}}>
-    			<Droppable direction="horizontal" droppableId='listsdropp'>
-        			{(provided, snapshot) => (
-					<div {...provided.droppableProps} ref={provided.innerRef} className="lists-wrapper">	
-	        			{lists.lists.map((el, i) => (
-	        				<Draggable key={el.id} draggableId={'listdragg'+el.id} index={i} >
-	        					{(provided, snapshot) => (
-	        						<div className='list' {...provided.draggableProps}
-              							{...provided.dragHandleProps} ref={provided.innerRef}>
-
-	        						<Card>
-						        		<Card.Content>
-						        			<h3>id{el.id} - s{el.sort}</h3>
-						        			<hr />
-						        			task 11<br />
-						        			task 12<br />
-						        			task 13<br />
-						        			task 14<br />
-						        		</Card.Content>
-						        	</Card>
-						        	</div>
-        						)}
-				        	</Draggable>
-        				))}
-        				{provided.placeholder}
-					</div>
-					)}
-				</Droppable>
-			</DragDropContext>
+		<Droppable type='list' direction="horizontal" droppableId='listsdropp'>
+			{(provided, snapshot) => (
+			<div {...provided.droppableProps} ref={provided.innerRef} className="lists-wrapper">	
+    			{lists.lists.map((el, i) => (
+    				<Draggable key={el.id} draggableId={'listdragg'+el.id} index={i} >
+    					{(provided, snapshot) => (
+    						<div className='list' {...provided.draggableProps}
+      							{...provided.dragHandleProps} ref={provided.innerRef}>
+				        		<List
+				        			id={el.id} 
+				        			name={el.name} 
+				        			tasks={el.tasks || []} 
+				        			edit={name => editList(el.id, name)} 
+				        			remove={() => deleteList(el.id)}
+			        			/>
+				        	</div>
+						)}
+		        	</Draggable>
+				))}
+				{provided.placeholder}
+			</div>
+			)}
+		</Droppable>
+	</DragDropContext>
 }

@@ -25,10 +25,7 @@ class Lists extends React.Component {
 			      	<h2>
 		        		Your lists
 		        	</h2>
-		        	<ListsView reorderList={(lId, to, from) => {
-
-		        		this.props.reorderList(lId, to, this.props.token);
-		        	}} lists={listsState} />
+		        	<ListsView reorderList={(lId, to, from) => this.props.reorderList(lId, to, this.props.token)} lists={listsState} />
 				</Segment>
 			</Container>	
 		)

@@ -20,7 +20,7 @@ export function loadLists(boardId, token){
 					payload: data.lists
 				});
 				for(let i = 0; i < data.lists.length; i++) {
-					loadTasks(data.lists[i].id, token);
+					dispatch(loadTasks(data.lists[i].id, token));
 				}
 			}
 		})
@@ -29,7 +29,7 @@ export function loadLists(boardId, token){
 
 export function loadTasks(listId, token) {
 	return function(dispatch) {
-		fetch(baseUrl+'list/'+listId, {
+		fetch(baseUrl+'task/'+listId, {
 			headers: {
 				'token': token
 			},

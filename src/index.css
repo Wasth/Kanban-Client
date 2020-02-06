@@ -139,6 +139,23 @@ div.boards-wrapper .ui.card .board {
 	/*flex-shrink: 0;*/
 	display: inline-block;
 }
+.tasks-wrapper {
+	/*padding: 10px;*/
+	/*border: 1px solid red;*/
+}
+.task {
+	margin-bottom: 5px;
+}
+.task .circle{
+	width: 15px;
+	margin-right: 10px;
+	height: 15px;
+	border-radius: 50%;
+	border: 1px solid gray;
+	display: inline-block;
+	position: relative;
+	top: 2px;
+}
 @media (max-width: 991px) {
 	.boards-wrapper {
 		grid-template-columns: repeat(5, 1fr);
