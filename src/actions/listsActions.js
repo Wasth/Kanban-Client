@@ -1,5 +1,37 @@
 import { baseUrl, newForm } from '../utils/apihost'
 
+export function createList(boardId, name, token) {
+	return function(dispatch) {
+		dispatch({
+			type: 'LISTS_REQUEST'
+		})
+		fetch(baseUrl+'list/'+boardId, {
+			method: 'POST',
+			headers: {
+				'token': token
+			},
+			body: newForm({
+				name
+			})
+		})
+		.then(response => {
+			return response.json()
+		})
+		.then(data => {
+			if(data) {
+				dispatch({
+					type: 'CREATED_LIST_SUCCESS',
+					payload: {
+						id: data.id,
+						name: data.name,
+						sort: data.sort,
+					}
+				});
+			}
+		})
+	}
+}
+
 export function loadLists(boardId, token){
 	return function(dispatch) {
 		dispatch({

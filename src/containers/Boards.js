@@ -194,7 +194,7 @@ class Boards extends React.Component {
 								        		})} name='pencil alternate' />
 								        		<Icon onClick={() => this.deleteHandler(el.id)} name='delete' />
 								        	</Label>
-								        	<Link to={'/board/'+el.id+'/lists'}> 
+								        	<Link onClick={() => this.props.setBoard(el.name)} to={'/board/'+el.id+'/lists'}> 
 								        		{el.name}
 												<div className="line" style={{backgroundColor: el.color}}></div>							       
 											</Link>
@@ -216,6 +216,10 @@ const mapStateToProps = store => ({
 })
 const mapDispatchToProps = dispatch => ({
 	loadBoards: (token) => dispatch(getBoards(token)),
+	setBoard: (name) => dispatch({
+		type: 'SET_BOARD',
+		payload: name
+	}),
 	addBoard: (name, color, token, toggleForm) => dispatch(addBoard(name, color, token, toggleForm)),
 	updateBoard: (id, name, color, token, toggleForm) => dispatch(updateBoard(id, name, color, token, toggleForm)),
 	deleteBoard: (id, token) => dispatch(deleteBoard(id, token))

@@ -2,10 +2,26 @@ const initalState = {
 	isFetching: false,
 	error: false,
 	lists: [],
+	boardName:''
 }
 
 
 export function listsReducer(state = initalState, action){
+	if(action.type === 'SET_BOARD') {
+		return {...state,
+			boardName: action.payload
+		}
+	}
+	if(action.type === 'CREATED_LIST_SUCCESS') {
+		return {...state,
+			isFetching: false,
+			lists: state.lists.concat([{
+				id: action.payload.id,
+				name: action.payload.name,
+				sort: action.payload.sort,
+			}])
+		}
+	}
 	if(action.type === 'LISTS_REQUESTS') {
 		return {...state,
 			isFetching: true,

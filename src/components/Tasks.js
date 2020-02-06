@@ -5,7 +5,9 @@ import Task from './Task';
 export default function Tasks({tasks, droppableId}) {
 	return <Droppable type='task' droppableId={'tasksdropp'+droppableId}>
         			{(provided, snapshot) => (
-					<div {...provided.droppableProps} ref={provided.innerRef} className="tasks-wrapper">	
+					<div style={{
+						backgroundColor: snapshot.isDraggingOver ? 'blue' : 'white'
+					}} {...provided.droppableProps} ref={provided.innerRef} className="tasks-wrapper">	
 	        			{tasks.map((el, i) => (
 	        				<Draggable key={el.id} draggableId={'taskdragg'+el.id} index={i} >
 	        					{(provided, snapshot) => (
@@ -23,6 +25,7 @@ export default function Tasks({tasks, droppableId}) {
 				        	</Draggable>
         				))}
     					{provided.placeholder}
+    					<div className="test">adawd</div>
 					</div>
 					)}
 				</Droppable>

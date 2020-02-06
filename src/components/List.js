@@ -6,7 +6,6 @@ export default function List({id, name, remove, tasks, edit}) {
 	return <Card>
 				<Card.Content>
 					<h3>{name}</h3>
-					<hr />
 					<Tasks 
 						tasks={tasks}
 						droppableId={id}

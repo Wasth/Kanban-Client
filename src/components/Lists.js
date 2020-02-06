@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
-import { Card } from 'semantic-ui-react';
+import { Card, Input, Button } from 'semantic-ui-react';
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import List from './List';
 
 export default function Lists({lists, addList, editList, deleteList, reorderList}) {
+	const newlistRef = useRef();
 	return <DragDropContext onDragEnd={(r) => {
 		console.log(r);
 		if(r.draggableId.indexOf('listdragg') >= 0) {
@@ -33,6 +34,11 @@ export default function Lists({lists, addList, editList, deleteList, reorderList
 		        	</Draggable>
 				))}
 				{provided.placeholder}
+				<div>
+						<Input ref={newlistRef} placeholder='New list name' />
+						&nbsp;&nbsp;&nbsp;
+						<Button onClick={() => addList(newlistRef.current.inputRef.current.value)}>Создать</Button>
+				</div>
 			</div>
 			)}
 		</Droppable>
